@@ -45,21 +45,33 @@ const loadPhoneDetails = id => {
     // console.log(url); 
     fetch(url)
     .then(res=> res.json())
-    .then(data=> displayPhoneDetails(data));
+    .then(infor=> displayPhoneDetails(infor.data));
 }
+
+
+
+
+
+
+
+
+
 
 
 // display phone details 
 const displayPhoneDetails = details =>{
-    console.log(details.data);
-    const phoneDetails = document.getElementById('phone-detail');
-    details.forEach(detail=>{
-        const div = document.createElement('div');
-        div.classList.add('col-md-5');
-        div.innerHTML = `
-        <img src="${detail.image}" class="img-fluid rounded-start" alt="...">
-        
-        `
-        phoneDetails.appendChild(div);
-    })
+    console.log(details.image);
+    const phoneDetails = document.getElementById('phone-details');
+    const div = document.createElement('div');
+    div.classList.add('card')
+    phoneDetails.innerHTML = `
+    <img src="${details.image}" class="card-img-top img-fluid w-50 mx-auto" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+    `
+
+   phoneDetails.appendChild(div);
 }
