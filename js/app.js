@@ -1,5 +1,7 @@
 
-
+// const loadUiData = ()=>{
+//   fetch()
+// }
 
 // searchField and load data with search button
 
@@ -17,11 +19,25 @@ const searchPhone = ()=>{
     
 }
 
+
 // show data from  ui with arrow function
+
 
 const displaySearchField = phones =>{
     // console.log(phones)
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.innerHTML = ''; 
     const searchResult = document.getElementById('searchResult-showDiv');
+    searchResult.textContent = '';
+    if(phones.length == 0){
+      const div = document.createElement('div');
+      div.innerHTML = `
+       
+       <h1 class = "text-center text-white" > No Result Found 404 </h1>
+     
+      `
+      searchResult.appendChild(div);
+    }
     phones.forEach(phone=>{
         // console.log(phone);
       
@@ -44,6 +60,7 @@ const displaySearchField = phones =>{
         
     });
 }
+
 
 
 // load phone details
@@ -69,6 +86,7 @@ const loadPhoneDetails = id => {
 const displayPhoneDetails = details =>{
     console.log(details);
     const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.innerHTML = '';
     const div = document.createElement('div');
     div.classList.add('card')
     phoneDetails.innerHTML = `
