@@ -60,18 +60,25 @@ const loadPhoneDetails = id => {
 
 // display phone details 
 const displayPhoneDetails = details =>{
-    console.log(details.image);
+    console.log(details);
     const phoneDetails = document.getElementById('phone-details');
     const div = document.createElement('div');
     div.classList.add('card')
     phoneDetails.innerHTML = `
-    <img src="${details.image}" class="card-img-top img-fluid w-50 mx-auto" alt="...">
+    <figure class="figure">
+      <img src="${details.image}" class="figure-img img-fluid rounded w-100" alt="...">
+   </figure>
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      <h5 class="card-title">${details.brand}</h5>
+      <p class="card-text">${details.releaseDate}</p>
+      <p class="card-text fs-3">Fetures </p>
+      <p class="card-text"></p>
+      <p class="card-text"></p>
+      <p class="card-text"></p>
     </div>
     `
 
    phoneDetails.appendChild(div);
 }
+
+
