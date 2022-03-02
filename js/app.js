@@ -1,10 +1,4 @@
 
-// const loadUiData = ()=>{
-//   fetch()
-// }
-
-// searchField and load data with search button
-
 const searchPhone = ()=>{
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
@@ -21,8 +15,6 @@ const searchPhone = ()=>{
 
 
 // show data from  ui with arrow function
-
-
 const displaySearchField = phones =>{
     // console.log(phones)
     const phoneDetails = document.getElementById('phone-details');
@@ -51,13 +43,11 @@ const displaySearchField = phones =>{
                 <h5 class="card-title "> ${phone.phone_name}</h5>
                 <p>${phone.slug}</p>
                 <button onclick="loadPhoneDetails('${phone.slug}')" type="button" class="btn btn-outline-dark">Details Phones</button>
+  
               </div>
             </div>
           `
           searchResult.appendChild(div);
-        
-        
-        
     });
 }
 
@@ -73,39 +63,32 @@ const loadPhoneDetails = id => {
 }
 
 
-
-
-
-
-
-
-
-
-
 // display phone details 
+
 const displayPhoneDetails = details =>{
     console.log(details);
     const phoneDetails = document.getElementById('phone-details');
-    phoneDetails.innerHTML = '';
+    // phoneDetails.innerHTML = '';
     const div = document.createElement('div');
-    div.classList.add('card')
+    div.classList.add('card');
     phoneDetails.innerHTML = `
     <figure class="figure">
       <img src="${details.image}" class="figure-img img-fluid rounded sagor2 " alt="...">
    </figure>
-    <div class="card-body ">
-      <h5 class="card-title">${details.brand} <span> ${details.name}</span></h5>
-      <p class="card-text">${details.releaseDate}</p>
+      <div class="card-body ">
       <p class="card-text fs-3">Fetures </p>
-      <p class="card-text">${details.mainFeatures.storage}</p>
-      <p class="card-text">${details.mainFeatures.displaySize}</p>
-      <p class="card-text">${details.mainFeatures.chipSet}</p>
-      <p class="card-text">${details.mainFeatures.memory}</p>
-      
-    </div>
+      <p class="card-text"><span class="fs-4"> Storage : </span>${details.mainFeatures.storage}</p>
+      <p class="card-text"><span class="fs-4"> Displaysize : </span> ${details.mainFeatures.displaySize}</p>
+      <p class="card-text"><span class="fs-4"> Chipset : </span> ${details.mainFeatures.chipSet}</p>
+      <p class="card-text fs-4"> Sensors  </p>
+      <p class="card-text"> ${details.mainFeatures.sensors[0]} ,<span> ${details.mainFeatures.sensors[1]}</span>,<span>${details.mainFeatures.sensors[2]}</span> ,<span>${details.mainFeatures.sensors[3]} </span>, <span>${details.mainFeatures.sensors[4]} </span></p>
+      <p class="card-text fs-4"> Others  </p>
+
+     </div>
     `
 
    phoneDetails.appendChild(div);
 }
+
 
 
