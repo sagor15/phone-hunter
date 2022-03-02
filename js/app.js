@@ -1,15 +1,11 @@
-
 const searchPhone = ()=>{
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
+    // erore handle no found
   if(searchText.length == ''){
-    const div = document.createElement('div');
-    div.innerHTML = `
-     
-     <h1 class = "text-center text-white" > No Result Found 404 </h1>
-   
-    `
-  }else{
+    alert('Please give input value');
+  }
+  else{
     // console.log(searchText);
     searchField.value = '';
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -18,16 +14,9 @@ const searchPhone = ()=>{
     .then(res => res.json())
     .then(data => displaySearchField(data.data.slice(0,20)));
   }
-    
-    
-    
-    
 }
-
-
 // show data from  ui with arrow function
 const displaySearchField = phones =>{
-    // console.log(phones)
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.innerHTML = ''; 
     const searchResult = document.getElementById('searchResult-showDiv');
@@ -35,15 +24,11 @@ const displaySearchField = phones =>{
     if(phones.length == 0){
       const div = document.createElement('div');
       div.innerHTML = `
-       
        <h1 class = "text-center text-white" > No Result Found 404 </h1>
-     
       `
       searchResult.appendChild(div);
     }
     phones.forEach(phone=>{
-        // console.log(phone);
-      
           const div = document.createElement('div');
           div.classList.add('col');
           div.innerHTML =`
@@ -61,9 +46,6 @@ const displaySearchField = phones =>{
           searchResult.appendChild(div);
     });
 }
-
-
-
 // load phone details
 const loadPhoneDetails = id => {
     const url =`https://openapi.programming-hero.com/api/phone/${id}`
@@ -72,8 +54,6 @@ const loadPhoneDetails = id => {
     .then(res=> res.json())
     .then(infor=> displayPhoneDetails(infor.data));
 }
-
-
 // display phone details 
 
 const displayPhoneDetails = details =>{
@@ -81,15 +61,13 @@ const displayPhoneDetails = details =>{
     // erore handl releaseDate
     let relMsg = '';
     if(details.releaseDate == ''){
-      relMsg = "Release Date Not Found"
+      relMsg = "Not Found"
     }else{
       relMsg = details.releaseDate;
     }
-
     // erore handle others
-    
-   const otherMsg = details.others  ?  details.others.Bluetooth  : 'pawa jai nai';
-   console.log(otherMsg)
+   const otherMsg = details.others  ?  details.others.Bluetooth  : ' Not Found ';
+   //////////////////////////
     const phoneDetails = document.getElementById('phone-details');
     // phoneDetails.innerHTML = '';
     const div = document.createElement('div');
@@ -100,20 +78,15 @@ const displayPhoneDetails = details =>{
    </figure>
       <div class="card-body ">
       <p class="card-text"><span class="fs-5"> Release Date : </span>${relMsg}</p>
-    
       <p class="card-text"><span class="fs-5"> Storage : </span>${details.mainFeatures.storage}</p>
       <p class="card-text"><span class="fs-5"> Displaysize : </span> ${details.mainFeatures.displaySize}</p>
       <p class="card-text"><span class="fs-5"> Chipset : </span> ${details.mainFeatures.chipSet}</p>
       <p class="card-text fs-4"> Sensors  </p>
       <p class="card-text"> ${details.mainFeatures.sensors[0]} ,<span> ${details.mainFeatures.sensors[1]}</span>,<span>${details.mainFeatures.sensors[2]}</span> ,<span>${details.mainFeatures.sensors[3]} </span>, <span>${details.mainFeatures.sensors[4]} </span></p>
       <p class="card-text fs-4"> Others </p>
-      
       <p class="card-text"><span class="fs-5"> Bluetooth : </span> ${otherMsg}</p>
-
      </div>
     `
-    
-    
    phoneDetails.appendChild(div);
 }
 
